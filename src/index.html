@@ -1,18 +1,5 @@
----
-desc: "This is me saying hello to the world"
-image: "./images/robert-pearce-UwHN0jU_YqQ-unsplash-800w.jpg"
-lang: "en"
-stylesheet: "default"
-title: "Hello, world!"
----
-
 <header>
-  <h1>Hello, world!</h1>
-  <img
-    alt="A woman sitting on a bench amongst trees at the end of a boardwalk leading to a pond with mountains in the background"
-    src="./images/robert-pearce-UwHN0jU_YqQ-unsplash-800w.jpg"
-    height="300"
-  />
+  <h1>~74k1</h1>
 </header>
 <main>
   <section>
@@ -20,6 +7,7 @@ title: "Hello, world!"
     <ul>
       $for(posts)$
         <li>
+          <div class="header-image"><img src=".$image$" width="200px"/></div>
           <div><a href=".$url$">$title$</a></div>
           <small>$date$</small>
         </li>
