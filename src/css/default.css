@@ -1,10 +1,74 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 
+/*@font-face {*/
+/*  font-family: "Mozilla Headline";*/
+/*  font-weight: 400;*/
+/*  font-style: normal;*/
+/*  src: url('../assets/fonts/MozillaHeadline-Regular.woff2') format('woff2');*/
+/*}*/
+/**/
+/*@font-face {*/
+/*  font-family: "Mozilla Headline";*/
+/*  font-weight: 400;*/
+/*  font-style: italic;*/
+/*  src: url('../assets/fonts/MozillaHeadline-Italic.woff2') format('woff2');*/
+/*}*/
+/**/
+/*@font-face {*/
+/*  font-family: "Mozilla Headline";*/
+/*  font-weight: 700;*/
+/*  font-style: normal;*/
+/*  src: url('../assets/fonts/MozillaHeadline-Bold.woff2') format('woff2');*/
+/*}*/
+/**/
+/*@font-face {*/
+/*  font-family: "Mozilla Headline";*/
+/*  font-weight: 700;*/
+/*  font-style: italic;*/
+/*  src: url('../assets/fonts/MozillaHeadline-BoldItalic.woff2') format('woff2');*/
+/*}*/
+/**/
+/*@font-face {*/
+/*  font-family: "Mozilla Text";*/
+/*  font-weight: 400;*/
+/*  font-style: normal;*/
+/*  src: url('../assets/fonts/MozillaText-Regular.woff2') format('woff2');*/
+/*}*/
+/**/
+/*@font-face {*/
+/*  font-family: "Mozilla Text";*/
+/*  font-weight: 400;*/
+/*  font-style: italic;*/
+/*  src: url('../assets/fonts/MozillaText-Italic.woff2') format('woff2');*/
+/*}*/
+/**/
+/*@font-face {*/
+/*  font-family: "Mozilla Text";*/
+/*  font-weight: 700;*/
+/*  font-style: normal;*/
+/*  src: url('../assets/fonts/MozillaText-Bold.woff2') format('woff2');*/
+/*}*/
+/**/
+/*@font-face {*/
+/*  font-family: "Mozilla Text";*/
+/*  font-weight: 700;*/
+/*  font-style: italic;*/
+/*  src: url('../assets/fonts/MozillaText-BoldItalic.woff2') format('woff2');*/
+/*}*/
+
 :root {
-  font-size: 62.5%; 
+  font-size: 62.5%;
   /*box-sizing: border-box;*/
-  /*-ms-text-size-adjust: 100%;*/
-  /*-webkit-text-size-adjust: 100%;*/
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+
+
+  /* COLOR VARIABLES */
+  /*--bg01: #0b0b0b;*/
+  --bg01: #090613;
+  --fg01: #f2f2f2;
+  --ac01: #7755ff;
+  --ac03: #77ff99;
 }
 
 *, *:before, *:after {
@@ -12,14 +76,16 @@
 }
 
 * {
-  font-family: "JetBrains Mono", serif;
+  color: var(--fg01);
+  font-family: "JetBrains Mono", "Mozilla Text", serif;
   font-optical-sizing: auto;
-  font-weight: <weight>;
+  font-weight: 400;
   font-style: normal;
 }
 
 html, body {
   min-height: 100vh;
+  background-color: var(--bg01);
 }
 
 body {
@@ -37,37 +103,12 @@ body, input, button {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1 {
-  font-size: 4.0rem;
-}
-
-h2 {
-  font-size: 3.63rem;
-}
-
-h3 {
-  font-size: 3.26rem;
-}
-
-h4 {
-  font-size: 2.90rem;
-}
-
-h5 {
-  font-size: 2.53rem;
-}
-
-h6 {
-  font-size: 2.16rem;
+h1, h2, h3, h4, h5, h6, small, p {
+  font-size: 2rem;
 }
 
 small {
-  font-size: 1.6rem;
   font-style: italic;
-}
-
-p {
-  font-size: 1.8rem;
 }
 
 pre.sourceCode {

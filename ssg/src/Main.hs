@@ -23,13 +23,13 @@ import Text.Pandoc.Highlighting (Style, breezeDark, styleToCss)
 -- PERSONALIZATION
 
 mySiteName :: String
-mySiteName = "My Site Name"
+mySiteName = "74k1.sh"
 
 mySiteRoot :: String
-mySiteRoot = "https://my-site.com"
+mySiteRoot = "https://74k1.sh"
 
 myFeedTitle :: String
-myFeedTitle = "My Feed Title"
+myFeedTitle = "74k1.sh/blog"
 
 myFeedDescription :: String
 myFeedDescription = "My Site Description"
