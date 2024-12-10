@@ -46,7 +46,6 @@ myFeedRoot = mySiteRoot
 --------------------------------------------------------------------------------
 -- CONFIG
 
--- Default configuration: https://github.com/jaspervdj/hakyll/blob/cd74877d41f41c4fba27768f84255e797748a31a/lib/Hakyll/Core/Configuration.hs#L101-L125
 config :: Configuration
 config =
   defaultConfiguration
@@ -73,7 +72,6 @@ config =
 
 main :: IO ()
 main = hakyllWith config $ do
-  -- static files
   forM_
     [ "CNAME"
     , "favicon.ico"
@@ -87,87 +85,86 @@ main = hakyllWith config $ do
       route idRoute
       compile copyFileCompiler
 
-  -- CSS
   match "css/*" $ do
     route idRoute
     compile compressCssCompiler
 
-  -- Blog Posts
   match "posts/*" $ do
     let ctx = constField "type" "article" <> postCtx
 
     route $ metadataRoute $ \md ->
       customRoute $ \_ -> "blog/posts" </> fileNameFromTitle md
-
     compile $
       pandocCompilerCustom
         >>= loadAndApplyTemplate "templates/post.html" ctx
         >>= saveSnapshot "content"
         >>= loadAndApplyTemplate "templates/default.html" ctx
 
-
-  -- Blog Index
-  match "blog/index.html" $ do
+  create ["blog/index.html"] $ do
     route $ customRoute $ \_ -> "blog/index.html"
     compile $ do
-      posts <- recentFirst =<< loadAll "blog/posts/*"
+      posts <- recentFirst =<< loadAll "posts/*"
+      let blogCtx =
+            listField "posts" postCtx (return posts)
+              <> constField "title" "Blog"
+              <> constField "root" mySiteRoot
+              <> constField "feedTitle" myFeedTitle
+              <> constField "siteName" mySiteName
+              <> constField "lang" "en"
+              <> constField "desc" "Blog index"
+              <> defaultContext
 
+      makeItem ""
+        >>= loadAndApplyTemplate "templates/blog.html" blogCtx
+        >>= loadAndApplyTemplate "templates/default.html" blogCtx
+
+  match "index.html" $ do
+    route idRoute
+    compile $ do
+      posts <- fmap (take 3) . recentFirst =<< loadAll "posts/*"
       let indexCtx =
             listField "posts" postCtx (return posts)
               <> constField "root" mySiteRoot
               <> constField "feedTitle" myFeedTitle
               <> constField "siteName" mySiteName
+              <> constField "lang" "en"
+              <> constField "desc" "Home page"
               <> defaultContext
 
       getResourceBody
         >>= applyAsTemplate indexCtx
         >>= loadAndApplyTemplate "templates/default.html" indexCtx
 
-  -- Main index
-  match "index.html" $ do
-    route idRoute
-    compile $ do
-      let indexCtx =
-            constField "root" mySiteRoot
-              <> constField "feedTitle" myFeedTitle
-              <> constField "siteName" mySiteName
-              <> defaultContext
-
-      getResourceBody
-        >>= applyAsTemplate indexCtx
-        >>= loadAndApplyTemplate "templates/default.html" indexCtx
-
-  -- About page
   match "about/index.html" $ do
-    route $ customRoute $ \_ -> "about/index.html"
+    route idRoute
     compile $ do
       let aboutCtx = 
             constField "title" "About"
+              <> constField "lang" "en"
+              <> constField "desc" "About page"
               <> defaultContext
-      pandocCompilerCustom
-        >>= loadAndApplyTemplate "templates/page.html" aboutCtx
+      getResourceBody
+        >>= applyAsTemplate aboutCtx
         >>= loadAndApplyTemplate "templates/default.html" aboutCtx
 
-  -- Contact page
   match "contact/index.html" $ do
-    route $ customRoute $ \_ -> "contact/index.html"
+    route idRoute
     compile $ do
       let contactCtx = 
             constField "title" "Contact"
+              <> constField "lang" "en"
+              <> constField "desc" "Contact page"
               <> defaultContext
-      pandocCompilerCustom
-        >>= loadAndApplyTemplate "templates/page.html" contactCtx
+      getResourceBody
+        >>= applyAsTemplate contactCtx
         >>= loadAndApplyTemplate "templates/default.html" contactCtx
 
-  -- Templates
-  match "templates/*" $
-    compile templateBodyCompiler
+  match "templates/*" $ compile templateBodyCompiler
 
-  -- Sitemap
-  create ["blog/sitemap.xml"] $ do
+  create ["sitemap.xml"] $ do
     route idRoute
     compile $ do
-      posts <- recentFirst =<< loadAll "blog/posts/*"
+      posts <- recentFirst =<< loadAll "posts/*"
 
       let pages = posts
           sitemapCtx =
@@ -211,6 +208,8 @@ postCtx =
   constField "root" mySiteRoot
     <> constField "feedTitle" myFeedTitle
     <> constField "siteName" mySiteName
+    <> constField "lang" "en"
+    <> constField "desc" "Blog post"
     <> dateField "date" "%Y-%m-%d"
     <> defaultContext
 
@@ -270,7 +269,7 @@ pandocWriterOpts =
 
 pandocHighlightStyle :: Style
 pandocHighlightStyle =
-  breezeDark -- https://hackage.haskell.org/package/pandoc/docs/Text-Pandoc-Highlighting.html
+  breezeDark
 
 --------------------------------------------------------------------------------
 -- FEEDS
@@ -303,7 +302,3 @@ feedConfiguration =
 fileNameFromTitle :: Metadata -> FilePath
 fileNameFromTitle =
   T.unpack . (`T.append` ".html") . Slugger.toSlug . T.pack . safeTitle
-
-titleRoute :: Metadata -> Routes
-titleRoute =
-  constRoute . fileNameFromTitle
