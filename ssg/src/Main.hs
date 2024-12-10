@@ -6,7 +6,7 @@ import Data.Maybe (fromMaybe)
 import Hakyll
 import qualified Data.Text as T
 import qualified Data.Text.Slugger as Slugger
-import System.FilePath (takeFileName)
+import System.FilePath (takeFileName, (</>))
 import Text.Pandoc
   ( Extension (Ext_fenced_code_attributes, Ext_footnotes, Ext_gfm_auto_identifiers, Ext_implicit_header_references, Ext_smart),
     Extensions,
@@ -73,6 +73,7 @@ config =
 
 main :: IO ()
 main = hakyllWith config $ do
+  -- static files
   forM_
     [ "CNAME"
     , "favicon.ico"
@@ -86,24 +87,30 @@ main = hakyllWith config $ do
       route idRoute
       compile copyFileCompiler
 
+  -- CSS
   match "css/*" $ do
     route idRoute
     compile compressCssCompiler
 
+  -- Blog Posts
   match "posts/*" $ do
     let ctx = constField "type" "article" <> postCtx
 
-    route $ metadataRoute titleRoute
+    route $ metadataRoute $ \md ->
+      customRoute $ \_ -> "blog/posts" </> fileNameFromTitle md
+
     compile $
       pandocCompilerCustom
         >>= loadAndApplyTemplate "templates/post.html" ctx
         >>= saveSnapshot "content"
         >>= loadAndApplyTemplate "templates/default.html" ctx
 
-  match "index.html" $ do
-    route idRoute
+
+  -- Blog Index
+  match "blog/index.html" $ do
+    route $ customRoute $ \_ -> "blog/index.html"
     compile $ do
-      posts <- recentFirst =<< loadAll "posts/*"
+      posts <- recentFirst =<< loadAll "blog/posts/*"
 
       let indexCtx =
             listField "posts" postCtx (return posts)
@@ -116,13 +123,51 @@ main = hakyllWith config $ do
         >>= applyAsTemplate indexCtx
         >>= loadAndApplyTemplate "templates/default.html" indexCtx
 
+  -- Main index
+  match "index.html" $ do
+    route idRoute
+    compile $ do
+      let indexCtx =
+            constField "root" mySiteRoot
+              <> constField "feedTitle" myFeedTitle
+              <> constField "siteName" mySiteName
+              <> defaultContext
+
+      getResourceBody
+        >>= applyAsTemplate indexCtx
+        >>= loadAndApplyTemplate "templates/default.html" indexCtx
+
+  -- About page
+  match "about/index.html" $ do
+    route $ customRoute $ \_ -> "about/index.html"
+    compile $ do
+      let aboutCtx = 
+            constField "title" "About"
+              <> defaultContext
+      pandocCompilerCustom
+        >>= loadAndApplyTemplate "templates/page.html" aboutCtx
+        >>= loadAndApplyTemplate "templates/default.html" aboutCtx
+
+  -- Contact page
+  match "contact/index.html" $ do
+    route $ customRoute $ \_ -> "contact/index.html"
+    compile $ do
+      let contactCtx = 
+            constField "title" "Contact"
+              <> defaultContext
+      pandocCompilerCustom
+        >>= loadAndApplyTemplate "templates/page.html" contactCtx
+        >>= loadAndApplyTemplate "templates/default.html" contactCtx
+
+  -- Templates
   match "templates/*" $
     compile templateBodyCompiler
 
-  create ["sitemap.xml"] $ do
+  -- Sitemap
+  create ["blog/sitemap.xml"] $ do
     route idRoute
     compile $ do
-      posts <- recentFirst =<< loadAll "posts/*"
+      posts <- recentFirst =<< loadAll "blog/posts/*"
 
       let pages = posts
           sitemapCtx =
@@ -133,11 +178,11 @@ main = hakyllWith config $ do
       makeItem ("" :: String)
         >>= loadAndApplyTemplate "templates/sitemap.xml" sitemapCtx
 
-  create ["rss.xml"] $ do
+  create ["blog/rss.xml"] $ do
     route idRoute
     compile (feedCompiler renderRss)
 
-  create ["atom.xml"] $ do
+  create ["blog/atom.xml"] $ do
     route idRoute
     compile (feedCompiler renderAtom)
 

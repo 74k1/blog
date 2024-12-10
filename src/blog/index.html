@@ -1,0 +1,31 @@
+---
+desc: "This is me saying hello to the world"
+image: "./images/robert-pearce-UwHN0jU_YqQ-unsplash-800w.jpg"
+lang: "en"
+stylesheet: "default"
+title: "Hello, world!"
+---
+
+<header>
+  <h1>./74k1</h1>
+  <div>
+    <a href="/">/</a>
+    <a href="./about">./about</a>
+    <a href="./blog">./blog</a>
+    <a href="./contact">./contact</a>
+  </div>
+</header>
+<main>
+  <section>
+    <h2>Blog Posts</h2>
+    <ul>
+      $for(posts)$
+        <li>
+          <div class="header-image"><img src=".$image$" width="200px"/></div>
+          <div><a href=".$url$">$title$</a></div>
+          <small>$date$</small>
+        </li>
+      $endfor$
+    </ul>
+  </section>
+</main>
