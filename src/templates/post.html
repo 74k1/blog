@@ -10,6 +10,15 @@
     </header>
     <section>
       $body$
+      <div class="author-info">
+        $if(authorTwitter)$
+          <a href="https://twitter.com/$authorTwitter$">Twitter</a>
+        $endif$
+        
+        $if(authorGithub)$
+          <a href="https://github.com/$authorGithub$">GitHub</a>
+        $endif$
+      </div>
     </section>
   </article>
 </main>

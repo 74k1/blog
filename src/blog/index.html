@@ -1,31 +1,34 @@
 ---
-desc: "This is me saying hello to the world"
-image: "./images/robert-pearce-UwHN0jU_YqQ-unsplash-800w.jpg"
+title: "Blog"
+desc: "All my blog posts and writings"
 lang: "en"
 stylesheet: "default"
-title: "Hello, world!"
+image: "/images/blog-header.jpg"
 ---
 
-<header>
-  <h1>./74k1</h1>
-  <div>
-    <a href="/">/</a>
-    <a href="./about">./about</a>
-    <a href="./blog">./blog</a>
-    <a href="./contact">./contact</a>
-  </div>
-</header>
-<main>
-  <section>
-    <h2>Blog Posts</h2>
-    <ul>
-      $for(posts)$
-        <li>
-          <div class="header-image"><img src=".$image$" width="200px"/></div>
-          <div><a href=".$url$">$title$</a></div>
-          <small>$date$</small>
-        </li>
-      $endfor$
-    </ul>
-  </section>
-</main>
+<div class="blog-index">
+    <header class="page-header">
+        <h1>Blog Posts</h1>
+        <p class="intro">Welcome to my blog where I write about various topics.</p>
+    </header>
+
+    <div class="post-list">
+        $for(posts)$
+        <article class="post-summary">
+            <h2><a href="$url$">$title$</a></h2>
+            <div class="post-meta">
+                <time datetime="$date$">$date$</time>
+            </div>
+            $if(description)$
+            <div class="post-description">
+                $description$
+            </div>
+            $endif$
+        </article>
+        $endfor$
+    </div>
+
+    <footer>
+        <p>Subscribe via <a href="/blog/rss.xml">RSS</a> or <a href="/blog/atom.xml">Atom</a></p>
+    </footer>
+</div>
