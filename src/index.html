@@ -1,30 +1,33 @@
 ---
-title: "Hello, world!"
-desc: "This is me saying hello to the world"
-lang: "en"
+title: "74k1"
+desc: "Personal website and blog of 74k1"
 stylesheet: "default"
 ---
 
-<header>
-  <h1>74k1</h1>
-  <div>
-    <a href="/">/</a>
-    <a href="./about">./about</a>
-    <a href="./blog">./blog</a>
-    <a href="./contact">./contact</a>
-  </div>
-</header>
 <main>
-  <section>
-    <h2>Blog Posts</h2>
-    <ul>
-      $for(posts)$
-        <li>
-          <div class="header-image"><img src=".$image$" width="200px"/></div>
-          <div><a href=".$url$">$title$</a></div>
-          <small>$date$</small>
-        </li>
-      $endfor$
-    </ul>
-  </section>
+    <header>
+        <h1>74k1</h1>
+    </header>
+
+    <section class="about-brief">
+        <p>I'm a software developer focused on web technologies and open source projects. When I'm not coding, you can find me writing about tech or contributing to the open source community.</p>
+    </section>
+
+    <section class="recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            $for(posts)$
+            <li>
+                <a href="$url$">$title$</a>
+                <time>$date$</time>
+            </li>
+            $endfor$
+        </ul>
+    </section>
+
+    <nav class="site-links">
+        <a href="/about/">About</a>
+        <a href="/blog/">Blog</a>
+        <a href="/contact/">Contact</a>
+    </nav>
 </main>
