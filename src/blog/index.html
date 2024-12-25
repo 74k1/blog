@@ -1,33 +1,25 @@
 ---
 title: "Blog"
-desc: "All my blog posts and writings"
-stylesheet: "default"
-image: "/images/blog-header.jpg"
 ---
 
-<div class="blog-index">
-    <header class="page-header">
-        <h1>Blog Posts</h1>
-        <p class="intro">Welcome to my blog where I write about various topics.</p>
-    </header>
-
-    <div class="post-list">
-        $for(posts)$
-        <article class="post-summary">
-            <h2><a href="$url$">$title$</a></h2>
-            <div class="post-meta">
-                <time datetime="$date$">$date$</time>
-            </div>
-            $if(description)$
-            <div class="post-description">
-                $description$
-            </div>
-            $endif$
-        </article>
-        $endfor$
-    </div>
-
-    <footer>
-        <p>Subscribe via <a href="/blog/rss.xml">RSS</a> or <a href="/blog/atom.xml">Atom</a></p>
-    </footer>
+<nav>
+  <p><a href="/">74k1.sh/</a>blog</p>
+  <p><a href="/"><- cd ..</a></p>
+  <p><a href="/contact/">contact</a></p>
+  <!--<p><a href="/lists/">lists</a></p>-->
+  <!--<p><a href="/projects/">projects</a></p>-->
+</nav>
+<div>
+  $for(posts)$
+  <article class="post-summary">
+    <p><a href="$url$">$title$</a></p>
+    <p>$date$</p>
+    <p class="tag">$firstTag$</p>
+  </article>
+  $endfor$
 </div>
+<footer>
+  <p><a href="#">GPG.asc</a><p>
+  <p><a href="#">CV.pdf</a><p>
+  <p>UTC+1 NOW<p>
+</footer>

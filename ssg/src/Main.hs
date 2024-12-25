@@ -76,12 +76,13 @@ main :: IO ()
 main = hakyllWith config $ do
     forM_
         [ "CNAME"
-        , "favicon.ico"
-        , "robots.txt"
         , "_config.yml"
-        , "images/*"
-        , "js/*"
+        , "favicon.ico"
         , "fonts/*"
+        , "images/*"
+        , "index.html"
+        , "js/*"
+        , "robots.txt"
         ] $ \f -> match f $ do
             route idRoute
             compile copyFileCompiler
@@ -113,25 +114,25 @@ main = hakyllWith config $ do
                 >>= applyAsTemplate blogCtx
                 >>= loadAndApplyTemplate "templates/default.html" blogCtx
 
-    match "index.html" $ do
-        route idRoute
-        compile $ do
-            posts <- fmap (take 3) . recentFirst =<< loadAll "posts/*"
-            let indexCtx =
-                    listField "posts" postCtx (return posts)
-                        <> baseCtx
-                        <> constField "desc" "Home page"
+    -- match "index.html" $ do
+    --     route idRoute
+    --     compile $ do
+    --         posts <- fmap (take 3) . recentFirst =<< loadAll "posts/*"
+    --         let indexCtx =
+    --                 listField "posts" postCtx (return posts)
+    --                     <> baseCtx
+    --                     <> constField "desc" "Home page"
+    --
+    --         getResourceBody
+    --             >>= applyAsTemplate indexCtx
+    --             >>= loadAndApplyTemplate "templates/default.html" indexCtx
 
-            getResourceBody
-                >>= applyAsTemplate indexCtx
-                >>= loadAndApplyTemplate "templates/default.html" indexCtx
-
-    match "about/index.html" $ do
-        route idRoute
-        compile $ do
-            getResourceBody
-                >>= applyAsTemplate baseCtx
-                >>= loadAndApplyTemplate "templates/default.html" baseCtx
+    -- match "about/index.html" $ do
+    --     route idRoute
+    --     compile $ do
+    --         getResourceBody
+    --             >>= applyAsTemplate baseCtx
+    --             >>= loadAndApplyTemplate "templates/default.html" baseCtx
 
     match "contact/index.html" $ do
         route idRoute
@@ -139,7 +140,6 @@ main = hakyllWith config $ do
             let contactCtx = 
                     baseCtx
                         <> constField "title" "Contact"
-                        <> constField "desc" "Contact page"
             getResourceBody
                 >>= applyAsTemplate contactCtx
                 >>= loadAndApplyTemplate "templates/default.html" contactCtx
@@ -193,12 +193,16 @@ feedCtx :: Context String
 feedCtx =
     titleCtx
         <> postCtx
-        <> bodyField "description"
+        <> metadataField                               -- Add this line
+        <> constField "description" myFeedDescription  -- Fallback description
+        <> constField "authorName" myFeedAuthorName    -- Add these feed-specific
+        <> constField "authorEmail" myFeedAuthorEmail  -- required fields
 
 postCtx :: Context String
 postCtx =
     baseCtx
         <> dateField "date" "%Y-%m-%d"
+        <> field "firstTag" firstTagCompiler
 
 titleCtx :: Context String
 titleCtx = field "title" updatedTitle
@@ -282,3 +286,13 @@ feedConfiguration =
 fileNameFromTitle :: Metadata -> FilePath
 fileNameFromTitle =
     T.unpack . (`T.append` ".html") . Slugger.toSlug . T.pack . safeTitle
+
+--------------------------------------------------------------------------------
+-- NEW FUNCTIONS
+
+firstTagCompiler :: Item a -> Compiler String
+firstTagCompiler item = do
+    metadata <- getMetadata (itemIdentifier item)
+    case lookupStringList "tags" metadata of
+        Just (tag:_) -> return tag
+        _ -> return ""

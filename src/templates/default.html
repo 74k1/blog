@@ -5,18 +5,10 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="$desc$">
-    $if(author)$
-    <meta name="author" content="$author$">
-    $endif$
-    $if(keywords)$
-    <meta name="keywords" content="$keywords$">
-    $endif$
 
     <meta property="og:site_name" content="$siteName$">
     <meta property="og:title" content="$title$">
     <meta property="og:url" content="$root$$url$">
-    <meta property="og:description" content="$desc$">
     $if(image)$
     <meta property="og:image" content="$root$$image$">
     $endif$
@@ -32,17 +24,11 @@
     $endif$
     <meta property="twitter:site" content="$siteName$">
     <meta property="twitter:title" content="$title$">
-    <meta property="twitter:description" content="$desc$">
-    $if(authorTwitter)$
-    <meta property="twitter:creator" content="$authorTwitter$">
-    $endif$
 
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="canonical" href="$root$$url$">
-
     <link rel="alternate" href="./blog/atom.xml" title="$feedTitle$" type="application/atom+xml">
     <link rel="alternate" href="./blog/rss.xml" title="$feedTitle$" type="application/rss+xml">
-
     <link rel="stylesheet" href="./css/default.css" />
     <link rel="stylesheet" href="./css/code.css" />
   </head>

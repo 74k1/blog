@@ -1,33 +1,55 @@
----
-title: "74k1"
-desc: "Personal website and blog of 74k1"
-stylesheet: "default"
----
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>74k1.sh</title>
 
-<main>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="$desc$">
+
+    <meta property="og:site_name" content="$siteName$">
+    <meta property="og:title" content="$title$">
+    <meta property="og:url" content="$root$$url$">
+    <meta property="og:description" content="$desc$">
+
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="canonical" href="$root$$url$">
+
+    <link rel="stylesheet" href="/css/default.css" />
+    <link rel="stylesheet" href="/css/code.css" />
+  </head>
+  <body>
+  <main>
     <header>
-        <h1>74k1</h1>
+      <h1>74k1.sh</h1>
     </header>
-
-    <section class="about-brief">
-        <p>I'm a software developer focused on web technologies and open source projects. When I'm not coding, you can find me writing about tech or contributing to the open source community.</p>
-    </section>
-
-    <section class="recent-posts">
-        <h2>Recent Posts</h2>
-        <ul>
-            $for(posts)$
-            <li>
-                <a href="$url$">$title$</a>
-                <time>$date$</time>
-            </li>
-            $endfor$
-        </ul>
-    </section>
-
-    <nav class="site-links">
-        <a href="/about/">About</a>
-        <a href="/blog/">Blog</a>
-        <a href="/contact/">Contact</a>
+    <nav>
+      <a href="/">-> ~</a>
+      <a href="/blog/">blog</a>
+      <a href="/contact/">contact</a>
     </nav>
-</main>
+    <section class="about-brief">
+      <p>Hi, I'm <span class=".accent1">Tim</span>.</p>
+      <p>I'm a <span class=".accent1">Junior System Engineer</span> with a love for <span class=".accent2">thoughtfully-crafted cli tools</span>, <span class=".accent2">striking graphics</span> and <span class=".accent2">NixOS</span>.</p>
+      <p>You'll often find me exploring new tools and tweaking configurations to make systems more useable.</p>
+      <p>I'm fascinated by efficient <span class=".accent1">system management</span>, <span class=".accent1">automation</span> and the ways we can make computers <span class=".accent1">work better for us</span>.</p>
+      <p>The intersection of <span class=".accent2">usability</span> and <span class=".accent2">technical elegance</span> is where I thrive.</p>
+      <p>I'm currently pursuing my federal <span class=".accent1">Cyber Security Specialist</span> certification while gaining hands-on experience through <span class=".accent1">system administration</span> and my self-hosted servers.</p>
+      <p>Take a look to see what I've been working on.</p>
+      <p>If you have any questions or inquiries, feel free to reach out.</p>
+    </section>
+    <section class="about-profile">
+      <img src="/images/profile.png"></img>
+      <p><span class=".gray">Uptime:</span><br>$(uptime)</p>
+      <p><span class=".gray">Locale:</span><br>en_CH.UTF-8</p>
+      <p><span class=".gray">Status:</span><br>Online</p>
+      <p>©</p>
+    </section>
+    <footer>
+      <p><a href="#">GPG.asc</a><p>
+      <p><a href="#">CV.pdf</a><p>
+      <p>UTC+1 NOW<p>
+    </footer>
+  </main>
+  </body>
+</html>
