@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 import Control.Monad (forM_)
-import Data.List (isPrefixOf, isSuffixOf)
+import Data.List (isPrefixOf, isSuffixOf, intersperse)
 import Data.Maybe (fromMaybe)
 import Hakyll
 import qualified Data.Text as T
@@ -58,6 +58,7 @@ config =
         , providerDirectory = "src"
         , storeDirectory = "ssg/_cache"
         , tmpDirectory = "ssg/_tmp"
+        , deployCommand = "echo 'No deploy command specified'"
         }
   where
     ignoreFile' path
@@ -74,6 +75,8 @@ config =
 
 main :: IO ()
 main = hakyllWith config $ do
+    tags <- buildTags "posts/*" (fromCapture "tags/*.html")
+
     forM_
         [ "CNAME"
         , "_config.yml"
@@ -83,6 +86,9 @@ main = hakyllWith config $ do
         , "index.html"
         , "js/*"
         , "robots.txt"
+        , ".htaccess"
+        , "GPG.asc"
+        , "blog/posts/index.html"
         ] $ \f -> match f $ do
             route idRoute
             compile copyFileCompiler
@@ -92,7 +98,9 @@ main = hakyllWith config $ do
         compile compressCssCompiler
 
     match "posts/*" $ do
-        let ctx = constField "type" "article" <> postCtx
+        let ctx = constField "type" "article" 
+                 <> tagsField "tags" tags 
+                 <> postCtx
 
         route $ metadataRoute $ \md ->
             customRoute $ \_ -> "blog/posts" </> fileNameFromTitle md

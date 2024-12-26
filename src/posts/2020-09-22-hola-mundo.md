@@ -2,7 +2,7 @@
 title: "¡Hola Mundo!"
 date: 2020-09-22
 desc: "A brief description of my first blog post"
-image: "./images/waiheke-stony-batter.jpg"
+image: "/images/waiheke-stony-batter.jpg"
 tags: ["¡Hola Mundo!", "Hardware", "DIY"]
 lang: "es"
 updated: "2020-09-23T12:00:00Z"
@@ -12,7 +12,7 @@ updated: "2020-09-23T12:00:00Z"
 
 <img
   alt="Grapevines among rolling hills leading to the sea"
-  src="./images/waiheke-stony-batter.jpg"
+  src="/images/waiheke-stony-batter.jpg"
   height="200"
 />
 

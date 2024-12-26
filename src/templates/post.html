@@ -1,24 +1,45 @@
 <main>
-  <article>
+  <section class="default-nav">
     <header>
-      <h1>
-        <a href=".$url$">$title$</a>
-      </h1>
-      <div>
-        $date$ $if(updated)$(updated: $updated$)$endif$
-      </div>
+      <h1><a href="/">74k1.sh</a><a href="/blog">/blog</a>/post</h1>
     </header>
-    <section>
-      $body$
-      <div class="author-info">
-        $if(authorTwitter)$
-          <a href="https://twitter.com/$authorTwitter$">Twitter</a>
-        $endif$
-        
-        $if(authorGithub)$
-          <a href="https://github.com/$authorGithub$">GitHub</a>
-        $endif$
-      </div>
+    <nav>
+      <!--<a href="/">-> ~</a>-->
+      <a href="/">cd ..</a>
+      <a href="/contact/">contact</a>
+    </nav>
+  </section>
+  <section class="default-post-meta">
+    <img src=$image$ alt="Cover image for $title$">
+    <p><span class=".gray">Released:</span><br/>$date$</p>
+    $if(updated)$
+    <p><span class=".gray">Updated:</span><br/>$updated$</p>
+    $endif$
+    <p><span class=".gray">Tags:</span><br/>
+      $if(tags)$
+        $tags$
+      $else$
+        Untagged
+      $endif$
+    </p>
+  </section>
+  <div class="default-content">
+    <section class="default-main">
+      <article>
+        <header>
+          <h1>
+            <a href="$url$">$title$</a>
+          </h1>
+        </header>
+        <section>
+          $body$
+        </section>
+      </article>
     </section>
-  </article>
+    <section class="footer">
+      <p><a href="#">GPG.asc</a></p>
+      <p><a href="#">CV.pdf</a></p>
+      <p>UTC+1 <span>(NOW)</span></p>
+    </section>
+  </div>
 </main>

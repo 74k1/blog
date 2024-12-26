@@ -19,37 +19,44 @@
     <link rel="stylesheet" href="/css/code.css" />
   </head>
   <body>
-  <main>
-    <header>
-      <h1>74k1.sh</h1>
-    </header>
-    <nav>
-      <a href="/">-> ~</a>
-      <a href="/blog/">blog</a>
-      <a href="/contact/">contact</a>
-    </nav>
-    <section class="about-brief">
-      <p>Hi, I'm <span class=".accent1">Tim</span>.</p>
-      <p>I'm a <span class=".accent1">Junior System Engineer</span> with a love for <span class=".accent2">thoughtfully-crafted cli tools</span>, <span class=".accent2">striking graphics</span> and <span class=".accent2">NixOS</span>.</p>
-      <p>You'll often find me exploring new tools and tweaking configurations to make systems more useable.</p>
-      <p>I'm fascinated by efficient <span class=".accent1">system management</span>, <span class=".accent1">automation</span> and the ways we can make computers <span class=".accent1">work better for us</span>.</p>
-      <p>The intersection of <span class=".accent2">usability</span> and <span class=".accent2">technical elegance</span> is where I thrive.</p>
-      <p>I'm currently pursuing my federal <span class=".accent1">Cyber Security Specialist</span> certification while gaining hands-on experience through <span class=".accent1">system administration</span> and my self-hosted servers.</p>
-      <p>Take a look to see what I've been working on.</p>
-      <p>If you have any questions or inquiries, feel free to reach out.</p>
-    </section>
-    <section class="about-profile">
-      <img src="/images/profile.png"></img>
-      <p><span class=".gray">Uptime:</span><br>$(uptime)</p>
-      <p><span class=".gray">Locale:</span><br>en_CH.UTF-8</p>
-      <p><span class=".gray">Status:</span><br>Online</p>
-      <p>©</p>
-    </section>
-    <footer>
-      <p><a href="#">GPG.asc</a><p>
-      <p><a href="#">CV.pdf</a><p>
-      <p>UTC+1 NOW<p>
-    </footer>
-  </main>
+    <main>
+      <section class="main-left">
+        <header>
+          <h1>74k1.sh</h1>
+        </header>
+        <nav>
+          <!--<a href="/">-> ~</a>-->
+          <a href="/blog/">blog</a>
+          <a href="/contact/">contact</a>
+        </nav>
+      </section>
+      <div class="main-content">
+        <section class="main-about">
+          <p>Hi, I'm <span class="accent1">Tim</span>.</p>
+          <p>I'm a <span class="accent1">Junior System Engineer</span> with a love for <span class="accent2">thoughtfully-crafted cli tools</span>, <span class="accent2">striking graphics</span> and <span class="accent2">NixOS</span>.</p>
+          <p>You'll often find me exploring new tools and tweaking configurations to make systems more useable.</p>
+          <p>I'm fascinated by efficient <span class="accent1">system management</span>, <span class="accent1">automation</span> and the ways we can make computers <span class="accent1">work better for us</span>.</p>
+          <p>The intersection of <span class="accent2">usability</span> and <span class="accent2">technical elegance</span> is where I thrive.</p>
+          <p>I'm currently pursuing my federal <span class="accent1">Cyber Security Specialist</span> certification while gaining hands-on experience through <span class="accent1">system administration</span> and my self-hosted servers.</p>
+          <p>Take a look to see what I've been working on.</p>
+          <p>If you have any questions or inquiries, feel free to reach out.</p>
+        </section>
+        <section class="footer">
+          <p><a href="#">GPG.asc</a></p>
+          <p><a href="#">CV.pdf</a></p>
+          <p>UTC+1 <span>$(NOW)</span></p>
+        </section>
+      </div>
+      <section class="main-right">
+        <div class="img-c">
+          <img src="/images/profile.png"></img>
+        </div>
+        <p><span class="gray">UPTIME</span><br>$(uptime)</p>
+        <p><span class="gray">LOCALE</span><br>en_ch.utf-8</p>
+        <p><span class="gray">STATUS</span><br>online</p>
+        <p><span class="gray">©</span></p>
+      </section>
+    </main>
+    <script defer src="./js/script.js"></script>
   </body>
 </html>

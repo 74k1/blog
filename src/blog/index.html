@@ -2,24 +2,31 @@
 title: "Blog"
 ---
 
-<nav>
-  <p><a href="/">74k1.sh/</a>blog</p>
-  <p><a href="/"><- cd ..</a></p>
-  <p><a href="/contact/">contact</a></p>
-  <!--<p><a href="/lists/">lists</a></p>-->
-  <!--<p><a href="/projects/">projects</a></p>-->
-</nav>
-<div>
-  $for(posts)$
-  <article class="post-summary">
-    <p><a href="$url$">$title$</a></p>
-    <p>$date$</p>
-    <p class="tag">$firstTag$</p>
-  </article>
-  $endfor$
-</div>
-<footer>
-  <p><a href="#">GPG.asc</a><p>
-  <p><a href="#">CV.pdf</a><p>
-  <p>UTC+1 NOW<p>
-</footer>
+<main>
+  <section class="default-nav">
+    <header>
+      <h1><a href="/">74k1.sh</a>/blog</h1>
+    </header>
+    <nav>
+      <!--<a href="/">-> ~</a>-->
+      <a href="/">cd ..</a>
+      <a href="/contact/">contact</a>
+    </nav>
+  </section>
+  <div class="default-content">
+    <section class="default-main">
+      $for(posts)$
+      <article class="post-summary">
+        <p><a href="$url$">$title$</a></p>
+        <p>$date$</p>
+        <p class="tag">$firstTag$</p>
+      </article>
+      $endfor$
+    </section>
+    <section class="footer">
+      <p><a href="#">GPG.asc</a></p>
+      <p><a href="#">CV.pdf</a></p>
+      <p>UTC+1 <span>(NOW)</span></p>
+    </section>
+  </div>
+</main>
