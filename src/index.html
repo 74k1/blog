@@ -17,8 +17,14 @@
 
     <link rel="stylesheet" href="/css/default.css" />
     <link rel="stylesheet" href="/css/code.css" />
+
+    <script src="https://unpkg.com/dayjs/dayjs.min.js"></script>
+    <script src="https://unpkg.com/dayjs/plugin/utc.js"></script>
+    <script>
+        dayjs.extend(window.dayjs_plugin_utc)
+    </script>
   </head>
-  <body>
+  <body onload="uptime(); setutcnow()">
     <main>
       <section class="main-left">
         <header>
@@ -44,14 +50,15 @@
         <section class="footer">
           <p><a href="#">GPG.asc</a></p>
           <p><a href="#">CV.pdf</a></p>
-          <p>UTC+1 <span>$(NOW)</span></p>
+          <p>UTC+1 <span id="UTCNOW"></span></p>
         </section>
       </div>
       <section class="main-right">
         <div class="img-c">
           <img src="/images/profile.png"></img>
         </div>
-        <p><span class="gray">UPTIME</span><br>$(uptime)</p>
+        <p><span class="gray">UPTIME</span><br><span id="uptime" onclick="toggleUptimeFormat()"></span></p>
+        <!--<p><span class="gray">UPTIME</span><br><span id="uptime"></span>d</p>-->
         <p><span class="gray">LOCALE</span><br>en_ch.utf-8</p>
         <p><span class="gray">STATUS</span><br>online</p>
         <p><span class="gray">©</span></p>
