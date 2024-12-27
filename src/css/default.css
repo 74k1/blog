@@ -8,7 +8,8 @@
 
   /* COLOR VARIABLES */
   /*--bg01: #0b0b0b;*/
-  --bg01: #090613;
+  --bg01: #0a090f;
+  /*--bg01: #090613;*/
   --gray: #696969;
   --fg01: #f2f2f2;
   --ac01: #7755ff;
@@ -61,27 +62,29 @@ main {
   min-height: calc(60vw * 9 / 16);
   display: grid;
   grid-template-columns: 14rem 1fr 20rem;
-  grid-template-areas: "left content right";
+  grid-template-areas: "nav content right";
   grid-template-rows: 1fr;
   gap: 2rem;
 }
 
-/* Left sections */
+/* * * * * MAIN PAGE * * * * */
 
-.main-left {
-  grid-area: left;
+/* Nav sections */
+
+.main-nav {
+  grid-area: nav;
   border: 1px solid var(--gray);
   display: grid;
   grid-template-rows: auto 1fr;
 }
 
-.main-left header {
+.main-nav header {
   padding: 2rem;
   text-align: center;
   border-bottom: 1px solid var(--gray);
 }
 
-.main-left nav {
+.main-nav nav {
   gap: 1rem;
   padding: 2rem;
   display: grid;
@@ -152,6 +155,133 @@ main {
   padding-bottom: 2rem;
 }
 
+/* * * * * BLOG PAGE * * * * */
+
+#main-blog {
+  grid-template-columns: 1fr 12vh; 
+  grid-template-rows: 7rem auto;
+  grid-template-areas:
+    "nav nav"
+    "content content";
+  /*justify-items: stretch;*/
+  align-items: center;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+/* Nav sections */
+
+.default-nav {
+  grid-area: nav;
+  border: 1px solid var(--gray);
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "header nav";
+  gap: 2rem
+}
+
+.default-nav header {
+  padding: 2rem;
+  text-align: center;
+  align-self: center;
+  max-width: 12ch;
+  border-right: 1px solid var(--gray);
+  grid-template-rows: auto;
+  grid-template-columns: auto auto;
+}
+
+.default-nav nav {
+  padding: 2rem;
+  align-self: center;
+  align-content: start;
+  justify-self: end;
+  justify-content: end;
+  display: grid;
+  gap: 2rem;
+  grid-template-rows: auto;
+  grid-template-colums: auto auto;
+  grid-template-areas: "a a"
+}
+
+.default-nav nav * {
+  text-align: right;
+  justify-self: end;
+}
+
+/* Main content */
+
+.default-content {
+  grid-area: content; 
+  align-self: start;
+  height: calc(100% - 2ch);
+  gap: 2rem;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+.default-main {
+  padding: 2rem;
+  gap: 2rem;
+  display: grid;
+  align-content: start;
+  height: calc(100%-4rem);
+  max-height: 44rem;
+  overflow: scroll;
+  overflow-block: scroll;
+}
+
+.default-main article {
+  display: grid;
+  gap: 2rem;
+  min-height: 10ch;
+  grid-template-columns: 15ch auto;
+  grid-template-rows: 1ch 1ch;
+  grid-template-areas:
+    "img post"
+    "img details";
+}
+
+.default-main * img {
+  width: 100%;
+  grid-area: img;
+}
+
+.default-main * .title {
+  grid-area: post;
+}
+
+.default-main * .details {
+  grid-area: details;
+}
+
+.default-main * .tag {
+  grid-area: details;
+  text-align: right;
+}
+
+.tag[data-content="NixOS"] {
+  color: var(--gray);
+}
+
+.tag[data-content="Hardware"] {
+  color: var(--gray);
+}
+
+.footer {
+  align-self: end;
+  padding-top: 1rem;
+  border-top: 1px solid var(--gray);
+  display: grid;
+  grid-template-columns: auto auto 1fr; 
+  gap: 2rem;
+  color: var(--gray);
+  margin-top: auto;
+}
+
+.footer p:last-child {
+  margin-left: auto;
+}
 
 /* HEIGHT > WIDTH */
 
@@ -166,7 +296,7 @@ main {
     grid-template-columns: 1fr 12vh; 
     grid-template-rows: 7rem auto;
     grid-template-areas:
-      "left left"
+      "nav nav"
       "content right";
     /*justify-items: stretch;*/
     align-items: center;
@@ -174,7 +304,7 @@ main {
     margin: 2rem 0;
   }
 
-  .main-left {
+  .main-nav {
     display: grid;
     grid-template-rows: auto;
     grid-template-columns: auto auto;
@@ -183,7 +313,7 @@ main {
     gap: 2rem
   }
 
-  .main-left header {
+  .main-nav header {
     align-self: center;
     max-width: 12rem;
     border-bottom: none;
@@ -192,7 +322,7 @@ main {
     grid-template-columns: auto auto;
   }
 
-  .main-left nav {
+  .main-nav nav {
     align-self: center;
     justify-self: end;
     justify-content: end;
@@ -203,7 +333,7 @@ main {
     grid-template-areas: "a a a"
   }
   
-  .main-left nav a {
+  .main-nav nav a {
     text-align: right;
     justify-self: end;
   }

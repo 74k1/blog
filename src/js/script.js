@@ -11,7 +11,7 @@ function updateWidth() {
 window.addEventListener('resize', updateWidth);
 updateWidth();
 
-// custom date / uptime
+// custom uptime
 
 let showSeconds = false;
 let uptimeInterval;
@@ -42,13 +42,7 @@ function toggleUptimeFormat() {
   updateUptime();
 }
 
-//function uptime() {
-//  const today = dayjs();
-//
-//  var diffDays = today.diff('2002-10-11', 'day');
-//  document.getElementById('uptime').innerHTML = diffDays;
-//}
-
+// custom utc time
 
 function setutcnow() {
   function updateTime() {

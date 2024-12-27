@@ -2,7 +2,7 @@
 title: "¡Hola Mundo!"
 date: 2020-09-22
 desc: "A brief description of my first blog post"
-image: "/images/waiheke-stony-batter.jpg"
+image: "/images/post_banner_template.png"
 tags: ["¡Hola Mundo!", "Hardware", "DIY"]
 lang: "es"
 updated: "2020-09-23T12:00:00Z"
