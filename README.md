@@ -1,6 +1,15 @@
 # Hakyll Blog with Nix Spices
 _this is a direct fork of https://github.com/rpearce/hakyll-nix-template and is being hosted on my VPS_
 
+## TODO
+
+- [ ] posts css
+- [ ] contact css
+- [ ] contact content
+- [ ] rm CV.pdf
+- [ ] actual blog post
+- [ ] run on duvet
+
 ## Quick reference Commands
 
 - build result into `./result/dist`
