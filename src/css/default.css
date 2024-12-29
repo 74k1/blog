@@ -9,12 +9,16 @@
   /* COLOR VARIABLES */
   /*--bg01: #0b0b0b;*/
   --bg01: #0a090f;
-  /*--bg01: #090613;*/
-  --gray: #696969;
+  --bg02: #1b1822;
+  --gray: #4e4b55;
   --fg01: #f2f2f2;
-  --ac01: #7755ff;
-  --ac02: #77ff99;
-  --ac03: #ff146e;
+  --ac01: #816bff;
+  --ac02: #54ff80;
+  --ac03: #74d9fe;
+  --ac04: #6682ff;
+  --ac05: #ff5487;
+  --ac06: #ffda6a;
+  --ac07: #eb6aff;
 }
 
 *, *:before, *:after {
@@ -158,11 +162,25 @@ main {
 /* * * * * BLOG PAGE * * * * */
 
 #main-blog {
-  grid-template-columns: 1fr 12vh; 
+  grid-template-columns: auto; 
   grid-template-rows: 7rem auto;
   grid-template-areas:
-    "nav nav"
-    "content content";
+    "nav"
+    "content";
+  /*justify-items: stretch;*/
+  align-items: center;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+/* * * * * CONTACT PAGE * * * * */
+
+#main-contact {
+  grid-template-columns: auto; 
+  grid-template-rows: 7rem auto;
+  grid-template-areas:
+    "nav"
+    "content";
   /*justify-items: stretch;*/
   align-items: center;
   gap: 2rem;
@@ -185,7 +203,7 @@ main {
   padding: 2rem;
   text-align: center;
   align-self: center;
-  max-width: 12ch;
+  max-width: 17ch;
   border-right: 1px solid var(--gray);
   grid-template-rows: auto;
   grid-template-columns: auto auto;
@@ -221,12 +239,12 @@ main {
 }
 
 .default-main {
-  padding: 2rem;
+  padding: 0 2rem 0;
   gap: 2rem;
   display: grid;
   align-content: start;
   height: calc(100%-4rem);
-  max-height: 44rem;
+  max-height: 25vw;
   overflow: scroll;
   overflow-block: scroll;
 }
@@ -260,12 +278,10 @@ main {
   text-align: right;
 }
 
-.tag[data-content="NixOS"] {
-  color: var(--gray);
-}
+/* TAGS */
 
-.tag[data-content="Hardware"] {
-  color: var(--gray);
+.tag[data-content="Keyboards"] {
+  color: var(--ac01);
 }
 
 .footer {
@@ -347,6 +363,10 @@ main {
     height: 100%;
     justify-self: end;
   }
+
+  .default-main {
+    max-height: 74ch;
+  }
 }
 
 /* small details */
@@ -377,6 +397,33 @@ a {
 a:hover {
   background-color: var(--fg01);
   color: var(--bg01);
+}
+
+div:has(> table) {
+  display: flex;
+  justify-content: center;
+}
+
+table {
+  border-spacing: 0;
+  width: 65%;
+  border-top: 1px solid var(--gray);
+  border-left: 1px solid var(--gray);
+  border-right: 1px solid var(--gray);
+}
+
+tr:nth-child(odd) {
+  background-color: var(--bg02)
+}
+
+tr:hover {
+  background-color: var(--gray);
+}
+
+th, td {
+  padding: 1ch;
+  text-align: left;
+  border-bottom: 1px solid var(--gray);
 }
 
 .accent1 {

@@ -89,6 +89,7 @@ main = hakyllWith config $ do
         , ".htaccess"
         , "GPG.asc"
         , "blog/posts/index.html"
+        -- , "contact/svg-email-protection.svg"
         ] $ \f -> match f $ do
             route idRoute
             compile copyFileCompiler
