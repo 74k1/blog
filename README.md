@@ -3,8 +3,8 @@ _this is a direct fork of https://github.com/rpearce/hakyll-nix-template and is 
 
 ## TODO
 
-- [ ] posts css
-- [ ] contact css
+- [x] posts css
+- [x] contact css
 - [ ] contact content
 - [ ] rm CV.pdf
 - [ ] actual blog post

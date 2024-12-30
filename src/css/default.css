@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 
 :root {
-  font-size: clamp(60%, 0.5vw, 80%);
+  font-size: 50%; 
   /*box-sizing: border-box;*/
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -160,29 +160,30 @@ main {
 }
 
 /* * * * * BLOG PAGE * * * * */
+/* * * * * CONTACT PAGE * * * * */
 
-#main-blog {
+#main-blog, #main-contact {
   grid-template-columns: auto; 
   grid-template-rows: 7rem auto;
   grid-template-areas:
     "nav"
     "content";
-  /*justify-items: stretch;*/
   align-items: center;
   gap: 2rem;
   margin: 2rem 0;
 }
 
-/* * * * * CONTACT PAGE * * * * */
+/* * * * * POST * * * * */
 
-#main-contact {
+#main-post{
   grid-template-columns: auto; 
-  grid-template-rows: 7rem auto;
+  grid-template-rows: 7rem 1fr 4rem;
   grid-template-areas:
     "nav"
-    "content";
-  /*justify-items: stretch;*/
+    "content"
+    "footer";
   align-items: center;
+  /*justify-items: stretch;*/
   gap: 2rem;
   margin: 2rem 0;
 }
@@ -227,6 +228,11 @@ main {
   justify-self: end;
 }
 
+#main-post .default-nav nav {
+  grid-template-colums: auto auto auto;
+  grid-template-areas: "a a a"
+}
+
 /* Main content */
 
 .default-content {
@@ -236,20 +242,13 @@ main {
   gap: 2rem;
   display: grid;
   grid-template-rows: 1fr auto;
+  grid-template-columns: auto;
+  grid-template-areas:
+    "content"
+    "footer";
 }
 
-.default-main {
-  padding: 0 2rem 0;
-  gap: 2rem;
-  display: grid;
-  align-content: start;
-  height: calc(100%-4rem);
-  max-height: 25vw;
-  overflow: scroll;
-  overflow-block: scroll;
-}
-
-.default-main article {
+#main-blog .default-content .default-main article {
   display: grid;
   gap: 2rem;
   min-height: 10ch;
@@ -258,6 +257,28 @@ main {
   grid-template-areas:
     "img post"
     "img details";
+}
+
+#main-post .default-content {
+  grid-template-columns: 21ch 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: "meta content";
+}
+
+#main-post .default-content .default-main {
+  padding-top: 2rem;
+}
+
+.default-main {
+  grid-area: "content";
+  padding: 0 2rem 0;
+  gap: 2rem;
+  display: grid;
+  align-content: start;
+  height: calc(100%-4rem);
+  max-height: 25vw;
+  overflow: scroll;
+  overflow-block: scroll;
 }
 
 .default-main * img {
@@ -278,13 +299,66 @@ main {
   text-align: right;
 }
 
-/* TAGS */
+#main-post .default-main {
+  max-height: 48ch;
+}
 
-.tag[data-content="Keyboards"] {
-  color: var(--ac01);
+.default-meta {
+  padding: 2rem 2rem 0;
+  border: 1px solid var(--gray);
+  max-width: 17ch;
+  gap: 2ch;
+  display: flex;
+  flex-direction: column;
+  justify-self: start;
+  height: 48ch;
+}
+
+.default-meta img {
+  max-width: 17ch;
+}
+
+#main-post .default-main article {
+  display: flex;
+  flex-direction: column;
+}
+
+#main-post .default-main article header {
+  padding-bottom: 2ch;
+}
+
+#main-post .default-main article header h1 {
+  background: var(--bg02);
+}
+
+#main-post .default-main article header h1 a {
+  position: relative;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  justify-self: stretch;
+}
+
+#main-post .default-main article header h1 a::before {
+  content: '#';
+  display: inline-block;
+}
+
+#main-post .default-main article header h1 a:hover::before {
+  content: '🔗';
+  display: inline-block;
+}
+
+#main-post .default-main article section {
+  gap: 1ch;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
 }
 
 .footer {
+  grid-area: "footer";
   align-self: end;
   padding-top: 1rem;
   border-top: 1px solid var(--gray);
@@ -303,7 +377,7 @@ main {
 
 @media (max-aspect-ratio: 1/1) {
   :root {
-    font-size: 50%;
+    font-size: 40%; 
   }
 
   main {
@@ -345,8 +419,8 @@ main {
     display: grid;
     gap: 2rem;
     grid-template-rows: auto;
-    grid-template-colums: auto auto auto;
-    grid-template-areas: "a a a"
+    grid-template-colums: auto auto;
+    grid-template-areas: "a a"
   }
   
   .main-nav nav a {
@@ -365,6 +439,10 @@ main {
   }
 
   .default-main {
+    max-height: 74ch;
+  }
+
+  #main-post .default-main {
     max-height: 74ch;
   }
 }
@@ -424,6 +502,12 @@ th, td {
   padding: 1ch;
   text-align: left;
   border-bottom: 1px solid var(--gray);
+}
+
+/* TAGS */
+
+.tag[data-content="Keyboards"] {
+  color: var(--ac01);
 }
 
 .accent1 {
