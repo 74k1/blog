@@ -20,6 +20,8 @@ import Text.Pandoc
     , writerExtensions
     )
 import Text.Pandoc.Highlighting (Style, breezeDark, styleToCss)
+import qualified Text.Pandoc.Walk as Walk
+import Text.Pandoc.Definition (Pandoc(..), Inline(..))
 
 --------------------------------------------------------------------------------
 -- PERSONALIZATION
@@ -239,7 +241,11 @@ updatedTitle = fmap replaceTitleAmp . getMetadata . itemIdentifier
 -- PANDOC
 
 pandocCompilerCustom :: Compiler (Item String)
-pandocCompilerCustom = pandocCompilerWith pandocReaderOpts pandocWriterOpts
+pandocCompilerCustom =
+  pandocCompilerWithTransform
+    pandocReaderOpts
+    pandocWriterOpts
+    addBlankTarget
 
 pandocExtensionsCustom :: Extensions
 pandocExtensionsCustom =
@@ -267,6 +273,14 @@ pandocWriterOpts =
 
 pandocHighlightStyle :: Style
 pandocHighlightStyle = breezeDark
+
+addBlankTarget :: Pandoc -> Pandoc
+addBlankTarget = Walk.walk addTarget
+  where
+    addTarget :: Inline -> Inline
+    addTarget (Link attr text url) = 
+        Link ("", [], [("target", "_blank")]) text url
+    addTarget x = x
 
 --------------------------------------------------------------------------------
 -- FEEDS
