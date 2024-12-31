@@ -5,9 +5,9 @@ _this is a direct fork of https://github.com/rpearce/hakyll-nix-template and is 
 
 - [x] posts css
 - [x] contact css
-- [ ] contact content
-- [ ] rm CV.pdf
-- [ ] actual blog post
+- [x] contact content
+- [x] rm CV.pdf
+- [x] actual blog post
 - [ ] run on duvet
 
 ## Quick reference Commands

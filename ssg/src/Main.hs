@@ -34,13 +34,16 @@ myFeedTitle :: String
 myFeedTitle = "74k1.sh/blog"
 
 myFeedDescription :: String
-myFeedDescription = "My Site Description"
+myFeedDescription = "Personal portfolio of Tim (74k1)"
+
+myDescription :: String
+myDescription = "Personal portfolio of Tim (74k1)"
 
 myFeedAuthorName :: String
-myFeedAuthorName = "My Name"
+myFeedAuthorName = "Tim (74k1)"
 
 myFeedAuthorEmail :: String
-myFeedAuthorEmail = "me@myemail.com"
+myFeedAuthorEmail = "mail@74k1.sh"
 
 myFeedRoot :: String
 myFeedRoot = mySiteRoot
@@ -80,7 +83,8 @@ main = hakyllWith config $ do
     forM_
         [ "CNAME"
         , "_config.yml"
-        , "favicon.ico"
+        , "favicon-32x32.png"
+        , "favicon-16x16.png"
         , "fonts/*"
         , "images/*"
         , "index.html"
@@ -196,6 +200,7 @@ baseCtx =
         <> constField "feedTitle" myFeedTitle
         <> constField "siteName" mySiteName
         <> constField "lang" "en"
+        -- <> constField "desc" myDescription  -- Fallback description
         <> defaultContext
 
 feedCtx :: Context String

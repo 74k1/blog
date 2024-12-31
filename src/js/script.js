@@ -12,60 +12,72 @@ window.addEventListener('resize', updateWidth);
 updateWidth();
 
 // copy content
-
 let isAnimating = false;
 
-function copycontent(element) {
+function animateText(element, originalText, tempText, onComplete) {
     if (isAnimating) return;
     isAnimating = true;
 
-    const originalText = element.textContent;
-    navigator.clipboard.writeText(originalText);
-    
-    const copied = "Copied!";
-    let counter = 0;
-    
-    const animateIn = setInterval(() => {
+    const maxLength = Math.max(originalText.length, tempText.length);
+
+    const animateIn = (counter, callback) => {
         let newText = '';
-        // Build the text character by character
-        for (let i = 0; i < Math.max(originalText.length, copied.length); i++) {
+        for (let i = 0; i < maxLength; i++) {
             if (i < counter) {
-                newText += copied[i] || '';
+                newText += tempText[i] || ' ';
             } else {
-                newText += originalText[i] || '';
+                newText += originalText[i] || ' ';
             }
         }
-        
         element.textContent = newText;
-        counter++;
         
-        if (counter > copied.length) {
-            clearInterval(animateIn);
-            
-            setTimeout(() => {
-                counter = 0;
-                const animateOut = setInterval(() => {
-                    let newText = '';
-                    for (let i = 0; i < Math.max(originalText.length, copied.length); i++) {
-                        if (i < counter) {
-                            newText += originalText[i] || '';
-                        } else {
-                            newText += copied[i] || '';
-                        }
-                    }
-                    
-                    element.textContent = newText;
-                    counter++;
-                    
-                    if (counter > originalText.length) {
-                        clearInterval(animateOut);
-                        element.textContent = originalText;
-                        isAnimating = false;
-                    }
-                }, 50);
-            }, 1000);
+        if (counter > maxLength) {
+            callback();
+            return;
         }
-    }, 50);
+        
+        setTimeout(() => animateIn(counter + 1, callback), 50);
+    };
+
+    const animateOut = (counter) => {
+        let newText = '';
+        for (let i = 0; i < maxLength; i++) {
+            if (i < counter) {
+                newText += originalText[i] || ' ';
+            } else {
+                newText += tempText[i] || ' ';
+            }
+        }
+        element.textContent = newText;
+        
+        if (counter > maxLength) {
+            element.textContent = originalText;
+            isAnimating = false;
+            if (onComplete) onComplete();
+            return;
+        }
+        
+        setTimeout(() => animateOut(counter + 1), 50);
+    };
+
+    // Start animation in
+    animateIn(0, () => {
+         //Wait a second with the temporary text
+        setTimeout(() => animateOut(0), 1000);
+    });
+}
+
+function copycontent(element) {
+    const originalText = element.textContent;
+    navigator.clipboard.writeText(originalText);
+    animateText(element, originalText, "Copied!");
+}
+
+function copyurl(element) {
+    const url = window.location.href;
+    const originalText = element.textContent;
+    navigator.clipboard.writeText(url);
+    animateText(element, originalText, "URL Copied!");
 }
 
 // custom uptime

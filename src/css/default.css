@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 
 :root {
-  font-size: 50%; 
+  font-size: 65%; 
   /*box-sizing: border-box;*/
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -115,7 +115,8 @@ main {
   padding-top: 1rem;
   border-top: 1px solid var(--gray);
   display: grid;
-  grid-template-columns: auto auto 1fr; 
+  /*grid-template-columns: auto auto 1fr; */
+  grid-template-columns: auto fr; 
   gap: 2rem;
   color: var(--gray);
   margin-top: auto;
@@ -303,21 +304,6 @@ main {
   max-height: 48ch;
 }
 
-.default-meta {
-  padding: 2rem 2rem 0;
-  border: 1px solid var(--gray);
-  max-width: 17ch;
-  gap: 2ch;
-  display: flex;
-  flex-direction: column;
-  justify-self: start;
-  height: 48ch;
-}
-
-.default-meta img {
-  max-width: 17ch;
-}
-
 #main-post .default-main article {
   display: flex;
   flex-direction: column;
@@ -327,8 +313,12 @@ main {
   padding-bottom: 2ch;
 }
 
-#main-post .default-main article header h1 {
+#main-post .default-main h1, #main-post h2, #main-post h3, #main-post h4, #main-post h5, #main-post h6 {
   background: var(--bg02);
+}
+
+#main-post h2, #main-post h3, #main-post h4, #main-post h5, #main-post h6 {
+  margin-top: 2ch;
 }
 
 #main-post .default-main article header h1 a {
@@ -348,6 +338,38 @@ main {
 #main-post .default-main article header h1 a:hover::before {
   content: '🔗';
   display: inline-block;
+  color: transparent;
+  text-shadow: 0 0 0 var(--bg01);
+}
+
+#main-post h2::before {
+  padding-right: 1ch;
+  content: '##';
+  display: inline-block;
+}
+
+#main-post h3::before {
+  padding-right: 1ch;
+  content: '###';
+  display: inline-block;
+}
+
+#main-post h4::before {
+  padding-right: 1ch;
+  content: '####';
+  display: inline-block;
+}
+
+#main-post h5::before {
+  padding-right: 1ch;
+  content: '#####';
+  display: inline-block;
+}
+
+#main-post h6::before {
+  padding-right: 1ch;
+  content: '#######';
+  display: inline-block;
 }
 
 #main-post .default-main article section {
@@ -357,13 +379,61 @@ main {
   overflow: scroll;
 }
 
+#main-post .default-main article section a {
+  text-decoration: underline;
+}
+
+#main-post .default-main article section a::after {
+  padding-left: 1ch;
+  content: '↗';
+  display: inline-block;
+}
+
+#main-post .default-main article section ul {
+  list-style-type: circle;
+  list-style-position: inside;
+}
+
+#main-post .default-main article section ol {
+  list-style-type: upper-roman;
+  list-style-position: inside;
+}
+
+#main-post .default-main article section em {
+  font-style: italic;
+}
+
+#main-post .default-main article section strong {
+  font-style: bold;
+}
+
+#main-post .default-main article section small {
+  color: var(--gray);
+}
+
+.default-meta {
+  padding: 2rem 2rem 0;
+  border: 1px solid var(--gray);
+  max-width: 17ch;
+  gap: 2ch;
+  display: flex;
+  flex-direction: column;
+  justify-self: start;
+  height: 48ch;
+}
+
+.default-meta img {
+  max-width: 17ch;
+}
+
 .footer {
   grid-area: "footer";
   align-self: end;
   padding-top: 1rem;
   border-top: 1px solid var(--gray);
   display: grid;
-  grid-template-columns: auto auto 1fr; 
+  /*grid-template-columns: auto auto 1fr; */
+  grid-template-columns: auto 1fr; 
   gap: 2rem;
   color: var(--gray);
   margin-top: auto;
@@ -377,7 +447,7 @@ main {
 
 @media (max-aspect-ratio: 1/1) {
   :root {
-    font-size: 40%; 
+    font-size: 50%; 
   }
 
   main {
@@ -508,6 +578,25 @@ th, td {
 
 .tag[data-content="Keyboards"] {
   color: var(--ac01);
+}
+
+.link::after {
+  padding-left: 1ch;
+  content: '↗';
+  display: inline-block;
+}
+
+.copy::after {
+  padding-left: 1ch;
+  font-size: medium;
+  content: '📋';
+  display: inline-block;
+  color: transparent;
+  text-shadow: 0 0 0 var(--fg01);
+}
+
+.copy:hover::after {
+  text-shadow: 0 0 0 var(--bg01);
 }
 
 .accent1 {
