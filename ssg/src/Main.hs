@@ -81,7 +81,8 @@ main = hakyllWith config $ do
     tags <- buildTags "posts/*" (fromCapture "tags/*.html")
 
     forM_
-        [ "favicon-32x32.png"
+        [ "favicon-512x512.png"
+        , "favicon-32x32.png"
         , "favicon-16x16.png"
         , "fonts/*"
         , "images/*"
