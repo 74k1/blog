@@ -1,17 +1,14 @@
----
-title: "74k1.sh - /contact/"
-stylesheet: "default"
-desc: "My Contact Info"
----
+{% extends "base.html" %}
 
+{% block content %}
 <main id="main-contact">
   <section class="default-nav">
     <header>
       <h1><a href="/">74k1.sh</a>/contacts</h1>
     </header>
     <nav>
-      <p><a href="/">cd ..</a></p>
-      <p><a href="/blog/">blog</a></p>
+      <p><a href="/" class="link">cd /</a></p>
+      <p><a href="/blog/" class="link">blog</a></p>
     </nav>
   </section>
   <div class="default-content">
@@ -59,3 +56,4 @@ desc: "My Contact Info"
     </section>
   </div>
 </main>
+{% endblock content %}

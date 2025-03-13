@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>74k1.sh</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Personal portfolio of Tim (74k1)">
+
+    <meta property="og:site_name" content="74k1.sh">
+    <meta property="og:title" content="~74k1">
+    <meta property="og:url" content="https://74k1.sh/">
+    <meta property="og:image" content="https://74k1.sh/favicon-512x512.png">
+    <meta property="og:description" content="Personal portfolio of Tim (74k1)">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="canonical" href="$root$$url$">
+
+    <link rel="stylesheet" href="/style.css" />
+    
+    <script defer src="https://umami.74k1.sh/umami.js" data-website-id="cdf5a40d-68e6-4bb8-a3f4-b99a2a1faeb4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/utc.min.js"></script>
+    <script>
+        dayjs.extend(window.dayjs_plugin_utc)
+    </script>
+  </head>
+  <body onload="uptime(); setutcnow()">
+    {% block content %} {% endblock %}
+  </body>
+  <script defer src="/script.js"></script>
+</html>

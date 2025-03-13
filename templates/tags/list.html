@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main id="main-blog">
+  <section class="default-nav">
+    <header class="tags">
+      <h1><a href="/">74k1.sh</a>/tags</h1>
+    </header>
+    <nav>
+      <!--<a href="/">-> ~</a>-->
+      <a href="/">cd ..</a>
+      <a href="/contact/">contact</a>
+    </nav>
+  </section>
+  <div class="default-content">
+    <section class="default-main">
+      <ul>
+      {% for tag in terms %}
+      <li><a href="{{ get_taxonomy_url(kind="tags", name=tag.name) }}">{{tag.name}}</a></li>
+      {% endfor %}
+      </ul>
+    </section>
+    <section class="footer">
+      <p><a href="/rss.xml" target="_blank" class="link ext">/rss.xml</a> <a href="/atom.xml" target="_blank" class="link ext">/atom.xml</a></p>
+      <!--<p><a href="#">CV.pdf</a></p>-->
+      <p>UTC+1 <span id="UTCNOW"></span></p>
+    </section>
+  </div>
+</main>
+<script defer src="/script.js"></script>
+{% endblock content %}

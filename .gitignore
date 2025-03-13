@@ -1,9 +1,4 @@
-!src/js/dist
 .DS_Store
-.ghc.environment.*
-_cache
-_tmp
-dist
-dist-newstyle
-node_modules
 result
+public
+0ld
