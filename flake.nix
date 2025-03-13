@@ -18,7 +18,7 @@
       in {
         packages.website = pkgs.stdenv.mkDerivation {
           pname = "static-website";
-          version = "2025-03-11";
+          version = "2025-03-13";
           src = ./.;
           nativeBuildInputs = [ pkgs.zola ];
           # configurePhase = ''
