@@ -1,7 +1,7 @@
 # SEE https://www.getzola.org/documentation/getting-started/configuration/
 
 # The URL the site will be built for
-base_url = "https://74k1.sh/blog/"
+base_url = "https://74k1.sh/"
 
 # The site title and description; used in feeds by default.
 title = "Tim on Tech"
