@@ -46,7 +46,9 @@
         <summary type="html">{{ page.summary }}</summary>
         {% else %}
         <content type="html" xml:base="{{ page.permalink | escape_xml | safe }}">{{ page.content }}</content>
-        <media:thumbnail xmlns:media="http://search.yahoo.com/mrss" url="{{ get_url(path=page.assets[0]) }}" />
+        {% set mdata = get_image_metadata(path=page.assets[0]) %}
+        {% set image = resize_image(path=page.assets[0], width=(mdata.width)|int, op="fit_width") %}
+        <media:thumbnail xmlns:media="http://search.yahoo.com/mrss" url="{{ image.url }}" />
         {% endif %}
     </entry>
     {%- endfor %}
