@@ -33,7 +33,7 @@
           <description xml:base="{{ page.permalink | escape_xml | safe }}">{% if page.summary %}{{ page.summary }}{% else %}{{ page.content }}{% endif %}</description>
           {% set mdata = get_image_metadata(path=page.assets[0]) %}
           {% set image = resize_image(path=page.assets[0], width=(mdata.width)|int, op="fit_width") %}
-          <enclosure url="{{ image.url }}" type="{{ mdata.mime }}">
+          <enclosure url="{{ image.url }}" type="{{ mdata.mime }}"></enclosure>
       </item>
       {%- endfor %}
     </channel>
