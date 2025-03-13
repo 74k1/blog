@@ -1,8 +1,8 @@
 // custom width calc
-
-const main = document.querySelector('main');
-
 function updateWidth() {
+  const main = document.querySelector('main');
+  if (!main) return;
+
   const ratio = window.innerWidth / window.innerHeight;
   const width = Math.min(Math.max(60 + (30 * (1 - ratio)), 60), 100);
   main.style.width = `${width}vw`;
@@ -15,7 +15,7 @@ updateWidth();
 let isAnimating = false;
 
 function animateText(element, originalText, tempText, onComplete) {
-    if (isAnimating) return;
+    if (!element || isAnimating) return;
     isAnimating = true;
 
     const maxLength = Math.max(originalText.length, tempText.length);
@@ -68,12 +68,16 @@ function animateText(element, originalText, tempText, onComplete) {
 }
 
 function copycontent(element) {
+    if (!element) return;
+
     const originalText = element.textContent;
     navigator.clipboard.writeText(originalText);
     animateText(element, originalText, "Copied!");
 }
 
 function copyurl(element) {
+    if (!element) return;
+
     const url = window.location.href;
     const originalText = element.textContent;
     navigator.clipboard.writeText(url);
@@ -86,8 +90,9 @@ let showSeconds = false;
 let uptimeInterval;
 
 function uptime() {
-  updateUptime();
+  if (!document.getElementById('uptime')) return;
 
+  updateUptime();
   if (!uptimeInterval) {
     uptimeInterval = setInterval(updateUptime, 1000);
   }
@@ -114,6 +119,9 @@ function toggleUptimeFormat() {
 // custom utc time
 
 function setutcnow() {
+  const utcElement = document.getElementById('UTCNOW');
+  if (!utcElement) return;
+
   function updateTime() {
     const utcPlusOne = dayjs().utc().add(1, 'hour').format('HH:mm:ss');
     document.getElementById('UTCNOW').innerHTML = utcPlusOne;
