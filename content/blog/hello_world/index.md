@@ -27,5 +27,3 @@ You can subscribe to the blog with RSS / Atom:
 
 - RSS: [https://74k1.sh/rss.xml](https://74k1.sh/rss.xml)
 - Atom: [https://74k1.sh/atom.xml](https://74k1.sh/atom.xml)
-
-<small>psst: you saw the image. that'll be the next blog post</small>
