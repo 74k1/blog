@@ -35,7 +35,7 @@
           <guid>{{ page.permalink | escape_xml | safe }}</guid>
           {% set mdata = get_image_metadata(path=page.assets[0]) %}
           {% set image = resize_image(path=page.assets[0], width=(mdata.width)|int, op="fit_width") %}
-          <description xml:base="{{ page.permalink | escape_xml | safe }}">{% if image %}&lt;img src=&quot;{{ image.url }}&quot; alt=&quot;&quot; /&gt;{% endif %}{% if page.summary %}{{ page.summary }}{% else %}{{ page.content }}{% endif %}</description>
+          <description xml:base="{{ page.permalink | escape_xml | safe }}">{% if image %}&lt;img src=&quot;{{ image.url }}&quot; alt=&quot;&quot; /&gt;{% endif %}{{ page.content }}</description>
       </item>
       {%- endfor %}
     </channel>
