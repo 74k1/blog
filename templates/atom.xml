@@ -45,6 +45,9 @@
         {% if page.summary %}
         <summary type="html">{{ page.summary }}</summary>
         {% else %}
+        {%- for tag in page.taxonomies.tags %}
+        <category term="{{ tag }}" label="{{ tag }}"/>
+        {%- endfor -%}
         <content type="html" xml:base="{{ page.permalink | escape_xml | safe }}">{{ page.content }}</content>
         {% set mdata = get_image_metadata(path=page.assets[0]) %}
         {% set image = resize_image(path=page.assets[0], width=(mdata.width)|int, op="fit_width") %}

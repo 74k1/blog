@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+<rss xmlns:atom="https://www.w3.org/2005/Atom" version="2.0">
     <channel>
       <title>{{ config.title }}
         {%- if term %} - {{ term.name }}
@@ -28,12 +28,14 @@
               {{ config.author }}
             {%- endif -%}
           </author>
+          {%- for tag in page.taxonomies.tags %}
+          <category>{{ tag }}</category>
+          {%- endfor -%}
           <link>{{ page.permalink | escape_xml | safe }}</link>
           <guid>{{ page.permalink | escape_xml | safe }}</guid>
-          <description xml:base="{{ page.permalink | escape_xml | safe }}">{% if page.summary %}{{ page.summary }}{% else %}{{ page.content }}{% endif %}</description>
           {% set mdata = get_image_metadata(path=page.assets[0]) %}
           {% set image = resize_image(path=page.assets[0], width=(mdata.width)|int, op="fit_width") %}
-          <enclosure url="{{ image.url }}" type="{{ mdata.mime }}"></enclosure>
+          <content type="html"><![CDATA[{% if image %}&lt;img src=&quot;{{ image.url }}&quot; alt=&quot;&quot; /&gt;{% endif %}{% if page.summary %}{{ page.summary }}{% else %}{{ page.content }}{% endif %}]]></content>
       </item>
       {%- endfor %}
     </channel>
