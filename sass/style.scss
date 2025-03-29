@@ -1,13 +1,20 @@
+/*
+BASE IMPORTS
+*/
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 
+/*
+VARIABLES
+*/
 :root {
-  font-size: 60%; 
-  /*box-sizing: border-box;*/
+  /* typography */
+  font-size: 60%;
+
+  /* browser defaults */
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 
-  /* COLOR VARIABLES */
-  /*--bg01: #0b0b0b;*/
+  /* colors */
   --bg01: #0a090f;
   --bg02: #1b1822;
   --fg02: #4e4b55;
@@ -21,10 +28,16 @@
   --ac07: #eb6aff;
 }
 
+/*
+RESET GLOBAL STYLES
+*/
 *, *:before, *:after {
   box-sizing: inherit;
 }
 
+/*
+MAIN
+*/
 * {
   color: var(--fg01);
   font-family: "JetBrains Mono", monospace;
@@ -116,7 +129,7 @@ main {
   border-top: 1px solid var(--fg02);
   display: grid;
   /*grid-template-columns: auto auto 1fr; */
-  grid-template-columns: auto fr; 
+  grid-template-columns: auto fr;
   gap: 2rem;
   color: var(--fg02);
   margin-top: auto;
@@ -148,16 +161,16 @@ main {
 
   p {
     padding: 1rem 2rem;
-  }
 
-  p:nth-of-type(1) {
-    padding-top: 2rem;
-  }
+    &:nth-of-type(1) {
+      padding-top: 2rem;
+    }
 
-  p:last-child {
-    align-self: end;
-    text-align: right;
-    padding-bottom: 2rem;
+    &:last-child {
+      align-self: end;
+      text-align: right;
+      padding-bottom: 2rem;
+    }
   }
 }
 
@@ -165,7 +178,7 @@ main {
 /* * * * * CONTACT PAGE * * * * */
 
 #main-blog, #main-contact {
-  grid-template-columns: auto; 
+  grid-template-columns: auto;
   grid-template-rows: 7rem auto;
   grid-template-areas:
     "nav"
@@ -178,7 +191,7 @@ main {
 /* * * * * POST * * * * */
 
 #main-post{
-  grid-template-columns: auto; 
+  grid-template-columns: auto;
   grid-template-rows: 7rem 1fr 4rem;
   grid-template-areas:
     "nav"
@@ -199,39 +212,39 @@ main {
   grid-template-rows: auto;
   grid-template-columns: auto 1fr;
   grid-template-areas: "header nav";
-  gap: 2rem
-}
-
-.default-nav header {
-  padding: 2rem;
-  text-align: center;
-  align-self: center;
-  max-width: 17ch;
-  border-right: 1px solid var(--fg02);
-  grid-template-rows: auto;
-  grid-template-columns: auto auto;
-
-  &.tags {
-    max-width: fit-content;
-  }
-}
-
-.default-nav nav {
-  padding: 2rem;
-  align-self: center;
-  align-content: start;
-  justify-self: end;
-  justify-content: end;
-  display: grid;
   gap: 2rem;
-  grid-template-rows: auto;
-  grid-template-colums: auto auto;
-  grid-template-areas: "a a"
-}
 
-.default-nav nav * {
-  text-align: right;
-  justify-self: end;
+  header {
+    padding: 2rem;
+    text-align: center;
+    align-self: center;
+    max-width: 17ch;
+    border-right: 1px solid var(--fg02);
+    grid-template-rows: auto;
+    grid-template-columns: auto auto;
+
+    &.tags {
+      max-width: fit-content;
+    }
+  }
+
+  nav {
+    padding: 2rem;
+    align-self: center;
+    align-content: start;
+    justify-self: end;
+    justify-content: end;
+    display: grid;
+    gap: 2rem;
+    grid-template-rows: auto;
+    grid-template-colums: auto auto;
+    grid-template-areas: "a a";
+
+    * {
+      text-align: right;
+      justify-self: end;
+    }
+  }
 }
 
 #main-post .default-nav nav {
@@ -242,7 +255,7 @@ main {
 /* Main content */
 
 .default-content {
-  grid-area: content; 
+  grid-area: content;
   align-self: start;
   height: calc(100% - 2ch);
   gap: 2rem;
@@ -254,25 +267,25 @@ main {
     "footer";
 }
 
-#main-blog .default-content .default-main article {
-  display: grid;
-  gap: 2rem;
-  min-height: 10ch;
-  grid-template-columns: 15ch auto;
-  grid-template-rows: 1ch 1ch;
-  grid-template-areas:
-    "img post"
-    "img details";
-}
-
-#main-post .default-content {
+#main-blog .default-content
   grid-template-columns: 21ch 1fr;
   grid-template-rows: auto;
   grid-template-areas: "meta content";
-}
 
-#main-post .default-content .default-main {
-  padding-top: 2rem;
+  .default-main {
+    padding-top: 2rem;
+
+    article {
+      display: grid;
+      gap: 2rem;
+      min-height: 10ch;
+      grid-template-columns: 15ch auto;
+      grid-template-rows: 1ch 1ch;
+      grid-template-areas:
+        "img post"
+        "img details";
+    }
+  }
 }
 
 .default-main {
@@ -285,47 +298,45 @@ main {
   max-height: 25vw;
   overflow: auto;
   /*overflow-block: scroll;*/
-}
 
-.default-main * img {
-  width: 100%;
-  grid-area: img;
-}
+  * {
+    img {
+      width: 100%;
+      grid-area: img;
+    }
 
-.default-main * .tag {
-  grid-area: post;
-  text-align: right;
-}
+    .tag {
+      grid-area: post;
+      text-align: right;
+    }
 
-.default-main * .title {
-  grid-area: post;
-}
+    .title {
+      grid-area: post;
+    }
 
-.default-main * .details {
-  grid-area: details;
-}
+    .details {
+      grid-area: details;
+    }
 
-.default-main * .giscus {
-  grid-area: details;
-  min-height: 10vh;
-  padding-top: 2em;
+    .giscus {
+      grid-area: details;
+      min-height: 10vh;
+      padding-top: 2em;
+    }
+  }
 }
-
-// .default-main * .reading_time {
-//   grid-area: details2;
-// }
 
 #main-post .default-main {
   max-height: 48ch;
-}
 
-#main-post .default-main article {
-  display: flex;
-  flex-direction: column;
-}
+  article {
+    display: flex;
+    flex-direction: column;
 
-#main-post .default-main article header {
-  padding-bottom: 2ch;
+    header {
+      padding-bottom: 2ch;
+    }
+  }
 }
 
 #main-post .default-main h1, #main-post h2, #main-post h3, #main-post h4, #main-post h5, #main-post h6 {
@@ -448,7 +459,7 @@ main {
   border-top: 1px solid var(--fg02);
   display: grid;
   /*grid-template-columns: auto auto 1fr; */
-  grid-template-columns: auto 1fr; 
+  grid-template-columns: auto 1fr;
   gap: 2rem;
   color: var(--fg02);
   margin-top: auto;
@@ -462,13 +473,13 @@ main {
 
 @media (max-aspect-ratio: 1/1) {
   :root {
-    font-size: 50%; 
+    font-size: 50%;
   }
 
   main {
     width: 99vw;
     min-height: 50vh;
-    grid-template-columns: 1fr 12vh; 
+    grid-template-columns: 1fr 12vh;
     grid-template-rows: 7rem auto;
     grid-template-areas:
       "nav nav"
@@ -507,7 +518,7 @@ main {
     grid-template-colums: auto auto;
     grid-template-areas: "a a"
   }
-  
+
   .main-nav nav a {
     text-align: right;
     justify-self: end;
@@ -548,7 +559,7 @@ small {
 }
 
 pre.sourceCode {
-  padding: 2rem; 
+  padding: 2rem;
 }
 
 a {
