@@ -12,25 +12,27 @@
       <a href="/contact/" class="link">/contact</a>
     </nav>
   </section>
-  <div class="default-content">
-    <section class="default-meta">
+  <div class="post-main">
+    <section class="post-meta">
       {% set mdata = get_image_metadata(path=page.assets[0]) %}
       {% set image = resize_image(path=page.assets[0], width=(mdata.width)|int, op="fit_width") %}
       <img src="{{ image.url }}" alt="Cover image for {{ page.title }}">
       <p><span class="gray">PUBLISHED</span><br/>{{ page.date }}</p>
       {% if page.taxonomies.tags[0] %}
-        <p><span class="gray">TAGS</span><br/>
+        <div><span class="gray">TAGS</span>
           {% for tag in page.taxonomies.tags %}
-          <a href={{ get_taxonomy_url(kind="tags", name=page.taxonomies.tags[0]) }}>{{ tag }}</a><br>
+          <p class="tag" data-content="{{ tag }}">
+            <a class="link" href={{ get_taxonomy_url(kind="tags", name=page.taxonomies.tags[0]) }}>{{ tag }}</a><br>
+          </p>
           {% endfor %}
-        </p>
+        </div>
       {% else %}
         <p><span class="gray">TAGS</span><br/>
         UNTAGGED
         </p>
       {% endif %}
     </section>
-    <section class="default-main">
+    <section class="post-content">
       <article>
         <header>
           <h1>

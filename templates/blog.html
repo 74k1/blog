@@ -7,29 +7,28 @@
       <h1><a href="/">74k1.sh</a>/blog</h1>
     </header>
     <nav>
-      <!--<a href="/">-> ~</a>-->
       <a href="/" class="link">cd /</a>
       <a href="/contact/" class="link">/contact</a>
     </nav>
   </section>
-  <div class="default-content">
-    <section class="default-main">
+  <div class="articles-main">
+    <section class="articles">
       {% for page in section.pages %}
       <article class="post-summary">
         {% set mdata = get_image_metadata(path=page.assets[0]) %}
         {% set image = resize_image(path=page.assets[0], width=(mdata.width)|int, op="fit_width") %}
         <img src="{{ image.url }}" alt="Cover image for {{ page.title }}"></img>
-        <p class="tag" data-content="{{ page.taxonomies.tags[0] }}"><a href="{{ get_taxonomy_url(kind="tags", name=page.taxonomies.tags[0]) }}">{{ page.taxonomies.tags[0] }}</a></p>
+        <p class="tag" data-content="{{ page.taxonomies.tags[0] }}"><a class="link" href="{{ get_taxonomy_url(kind="tags", name=page.taxonomies.tags[0]) }}">{{ page.taxonomies.tags[0] }}</a></p>
         <p class="title"><a href="{{ page.permalink | safe }}" class="link">{{ page.title }}</a></p>
         <p class="details gray">{{ page.date }}<span class="gray"> | {{ page.reading_time }} min</span></p>
       </article>
       {% endfor %}
     </section>
-    <section class="footer">
-      <p><a href="/rss.xml" target="_blank" class="link ext">/rss.xml</a> <a href="/atom.xml" target="_blank" class="link ext">/atom.xml</a></p>
-      <!--<p><a href="#">CV.pdf</a></p>-->
-      <p>UTC+1 <span id="UTCNOW"></span></p>
-    </section>
   </div>
+  <section class="footer">
+    <p><a href="/rss.xml" target="_blank" class="link ext">/rss.xml</a> <a href="/atom.xml" target="_blank" class="link ext">/atom.xml</a></p>
+    <!--<p><a href="#">CV.pdf</a></p>-->
+    <p>UTC+1 <span id="UTCNOW"></span></p>
+  </section>
 </main>
 {% endblock content %}

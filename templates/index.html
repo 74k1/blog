@@ -2,7 +2,7 @@
 
 {% block content %}
 <main>
-  <section class="main-nav">
+  <section class="index-nav">
     <header>
       <h1>74k1.sh</h1>
     </header>
@@ -12,8 +12,8 @@
       <a href="/contact/" class="link">/contact</a>
     </nav>
   </section>
-  <div class="main-content">
-    <section class="main-about">
+  <div class="index-main">
+    <section class="index-about">
       <p>Hi, I'm <span class="accent1">Tim</span>.</p>
       <p>I'm a <span class="accent1">Junior System Engineer</span> with a love for <span class="accent2">thoughtfully-crafted cli tools</span>, <span class="accent2">striking graphics</span> and <span class="accent2">NixOS</span>.</p>
       <p>You'll often find me exploring new tools and tweaking configurations to make systems more useable.</p>
@@ -25,15 +25,15 @@
     </section>
     <section class="footer">
       <p><a href="/GPG.asc" target="_blank" class="link ext">GPG.asc</a></p>
-      <p>UTC+1 <span id="UTCNOW"></span></p>
+      <p title="my timezone">UTC+1 <span id="UTCNOW"></span></p>
     </section>
   </div>
-  <section class="main-right">
+  <section class="index-profile">
     <div class="img-c">
       <img src="/profile.png"></img>
     </div>
-    <p><span class="gray">UPTIME</span><br><span id="uptime" onclick="toggleUptimeFormat()"></span></p>
-    <p><span class="gray">LOCALE</span><br>en_ch.utf-8</p>
+    <p title="my age"><span class="gray">UPTIME</span><br><span id="uptime" onclick="toggleUptimeFormat()"></span></p>
+    <p title="my preferred language"><span class="gray">LOCALE</span><br>en_ch.utf-8</p>
     <p><span class="gray">STATUS</span><br>online</p>
     <p><span class="gray">©</span></p>
   </section>
