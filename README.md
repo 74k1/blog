@@ -1,20 +1,24 @@
 # Zola blog with Nix Spices
-this just `zola build` to $out
 
-## TODO
+Blog Page resource for my own Blog site:
+https://74k1.sh/
 
-- [x] posts css
-- [x] contact css
-- [x] contact content
-- [x] rm CV.pdf
-- [x] actual blog post
-- [ ] run on duvet
+this just `zola build`'s to $out
+
+ofcourse there's always room for improvement. :)
+
 
 ## Quick reference Commands
 
-- build result into `./result/dist`
+### build result into `./result/dist`
 
 ```bash
 nix build
 ```
 
+### live update
+
+```bash
+nix develop .
+zola serve
+```
