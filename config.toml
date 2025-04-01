@@ -4,8 +4,8 @@
 base_url = "https://74k1.sh/"
 
 # The site title and description; used in feeds by default.
-title = "Tim on Tech"
-description = "All sorts of stuff by a pursuing Cyber Security Specialist"
+title = "74k1.sh"
+description = "Tim (74k1) on Tech"
 
 # The default language; used in feeds.
 default_language = "en"
@@ -60,7 +60,7 @@ feed_limit = 25
 hard_link_static = false
 
 # The default author for pages
-author = "74k1 (Tim)"
+author = "Tim (74k1)"
 
 # The taxonomies to be rendered for the site and their configuration of the default languages
 # Example:

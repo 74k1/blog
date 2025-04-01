@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>74k1.sh</title>
+    <title>74k1.sh{% block title %}{% endblock title %}</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Tim (74k1) on Tech - Blog">
 
     <meta property="og:site_name" content="74k1.sh">
-    <meta property="og:title" content="~74k1">
-    <meta property="og:url" content="https://74k1.sh/">
+    <meta property="og:title" content="74k1.sh{% block title2 %}{% endblock title2 %}">
+    <meta property="og:url" content="{{ config.base_url }}{{ current_path | safe }}">
     <meta property="og:image" content="https://74k1.sh/favicon-512x512.png">
-    <meta property="og:description" content="Tim (74k1) on Tech - Blog">
+    <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}Tim (74k1) on Tech{% block title3 %}{% endblock title3 %}{% endif %}">
 
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">

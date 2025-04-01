@@ -35,7 +35,7 @@
             {%- if config.author -%}
               {{ config.author }}
             {%- else -%}
-              74k1 (Tim)
+              Tim (74k1)
             {%- endif -%}
           </name>
         </author>

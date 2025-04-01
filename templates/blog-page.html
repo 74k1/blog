@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block title %} > {{ page.title }}{% endblock title %}
+{% block title2 %} > {{ page.title }}{% endblock title2 %}
+{% block title3 %} > {{ page.title }}{% endblock title3 %}
+
 {% block content %}
 <main id="main-post">
   <section class="default-nav">
@@ -62,7 +66,7 @@
     </section>
   </div>
   <section class="footer">
-    <p><a href="/GPG.asc" target="_blank" class="link ext">GPG.asc</a></p>
+    <p><a href="https://github.com/74k1.gpg" target="_blank" class="link ext">GPG</a></p>
     <p>UTC+1 <span id="UTCNOW"></span></p>
   </section>
 </main>
