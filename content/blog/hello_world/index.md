@@ -1,7 +1,7 @@
 +++
 title = "Hello World!"
 date = 2024-12-31
-desc = "My first Blog Post!"
+description = "My first ever Blog Post!"
 draft = false
 [taxonomies]
 tags = [ "Update" ]
