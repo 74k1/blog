@@ -123,7 +123,7 @@ function setutcnow() {
   if (!utcElement) return;
 
   function updateTime() {
-    const utcPlusOne = dayjs().utc().add(1, 'hour').format('HH:mm:ss');
+    const utcPlusOne = dayjs().utc().add(2, 'hour').format('HH:mm:ss');
     document.getElementById('UTCNOW').innerHTML = utcPlusOne;
   }
 
