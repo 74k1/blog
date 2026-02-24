@@ -9,7 +9,7 @@
 
     <meta property="og:site_name" content="74k1.sh">
     <meta property="og:title" content="{% if page.title %}{{ page.title }}{% elif section.title %}{{ section.title }}{% else %}74k1.sh{% endif %}">
-    <meta property="og:url" content="{{ config.base_url }}{{ current_path | safe }}">
+    <meta property="og:url" content="{{ config.base_url }}{% if current_path %}{{ current_path | safe }}{% else %}/{% endif %}">
     <meta property="og:image" content="{% if page.assets[0] %}{% set mdata = get_image_metadata(path=page.assets[0]) %}{% set image = resize_image(path=page.assets[0], width=(mdata.width)|int, op="fit_width") %}{{ image.url }}{% else %}https://74k1.sh/favicon-512x512.png{% endif %}">
     <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}Tim (74k1) on Tech{% endif %}">
 
@@ -19,15 +19,17 @@
     <meta name="fediverse:creator" content="@74k1@infosec.exchange">
     <link rel="me" href="https://infosec.exchange/@74k1">
 
-    <link rel="canonical" href="$root$$url$">
+    <link rel="canonical" href="{{ config.base_url }}{% if current_path %}{{ current_path | safe }}{% else %}/{% endif %}">
 
     <link rel="stylesheet" href="/style.css" />
     
     <script defer src="https://umami.74k1.sh/umami.js" data-website-id="cdf5a40d-68e6-4bb8-a3f4-b99a2a1faeb4"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/utc.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/timezone.min.js"></script>
     <script>
         dayjs.extend(window.dayjs_plugin_utc)
+        dayjs.extend(window.dayjs_plugin_timezone)
     </script>
   </head>
   <body onload="uptime(); setutcnow()">

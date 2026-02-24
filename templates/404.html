@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main id="main-404">
+  <section class="default-nav">
+    <header>
+      <h1><a href="/">74k1.sh</a>/404</h1>
+    </header>
+    <nav>
+      <p><a href="/" class="link">cd /</a></p>
+      <p><a href="/blog/" class="link">/blog</a></p>
+    </nav>
+  </section>
+  <div class="error-main">
+    <section class="error-content">
+      <h2>404: Skill Issue</h2>
+      <p>This page doesn't exist. Much like your ability to type URLs.</p>
+      <p class="gray">(You had one job...)</p>
+      <br>
+      <p>Try not being wrong: <a href="/" class="link">homepage</a> / <a href="/blog/" class="link">blog</a></p>
+    </section>
+  </div>
+  <section class="footer">
+    <p><a href="https://github.com/74k1.gpg" class="link ext">gpg</a></p>
+    <p><span id="UTC-OFFSET" class="gray"></span> <span id="UTCNOW"></span></p>
+  </section>
+</main>
+{% endblock content %}

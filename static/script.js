@@ -122,9 +122,22 @@ function setutcnow() {
   const utcElement = document.getElementById('UTCNOW');
   if (!utcElement) return;
 
+  const TIMEZONE = 'Europe/Zurich';
+
+  function getOffsetLabel() {
+    const now = dayjs().tz(TIMEZONE);
+    const offset = now.format('Z');
+    return 'UTC' + offset.replace(':00', '');
+  }
+
   function updateTime() {
-    const utcPlusOne = dayjs().utc().add(2, 'hour').format('HH:mm:ss');
-    document.getElementById('UTCNOW').innerHTML = utcPlusOne;
+    const zurichTime = dayjs().tz(TIMEZONE).format('HH:mm:ss');
+    utcElement.textContent = zurichTime;
+
+    const offsetElement = document.getElementById('UTC-OFFSET');
+    if (offsetElement) {
+      offsetElement.textContent = getOffsetLabel();
+    }
   }
 
   updateTime();

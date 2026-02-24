@@ -865,3 +865,61 @@ td:nth-child(even) {
 .gray {
   color: var(--fg02);
 }
+
+/* 404 PAGE */
+#main-404 {
+  grid-template-columns: auto;
+  grid-template-rows: 7rem auto 3rem;
+  grid-template-areas:
+    "nav"
+    "content"
+    "footer";
+  align-items: center;
+  gap: 2rem;
+  margin: 2rem 0;
+
+  .error-main {
+    grid-area: content;
+    align-self: stretch;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    padding: 0 2rem;
+
+    .error-content {
+      h2 {
+        margin-bottom: 1rem;
+      }
+      p {
+        margin: 0.5rem 0;
+      }
+    }
+  }
+
+  .footer {
+    grid-area: footer;
+  }
+}
+
+/* Focus states for accessibility */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--ac01);
+  outline-offset: 2px;
+}
+
+.skip-to-content {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--fg01);
+  color: var(--bg01);
+  padding: 1rem 2rem;
+  z-index: 1000;
+}
+
+.skip-to-content:focus {
+  top: 1rem;
+}
