@@ -1,6 +1,8 @@
 +++
 title = "Hello World!"
 date = 2024-12-31
+slug = "hello_world"
+path = "blog/2024/hello_world"
 description = "My first ever Blog Post!"
 draft = false
 [taxonomies]
